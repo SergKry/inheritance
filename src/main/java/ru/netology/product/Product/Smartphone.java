@@ -1,8 +1,13 @@
-public class Smartphone extends Product{
+package ru.netology.product.Product;
+
+import ru.netology.product.Product.Product;
+
+public class Smartphone extends Product {
     protected String manufacturer;
-    public Smartphone(int id,String name,int price,String manufacturer){
+
+    public Smartphone(int id, String name, int price, String manufacturer) {
         super(id, name, price);
-        this.manufacturer= manufacturer;
+        this.manufacturer = manufacturer;
     }
 
     public String getManufacturer() {

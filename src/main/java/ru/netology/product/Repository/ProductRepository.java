@@ -1,4 +1,8 @@
-public class Repository {
+package ru.netology.product.Repository;
+
+import ru.netology.product.Product.Product;
+
+public class ProductRepository {
     private Product[] products = new Product[0];
 
     public void add(Product product) {
@@ -11,11 +15,10 @@ public class Repository {
     }
 
     public Product[] getAll() {
-        return products;
-
+        return products.clone();
     }
 
-    public void removeBy(int id) {
+    public void removeById(int id) {
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product product : products) {
@@ -27,4 +30,8 @@ public class Repository {
         products = tmp;
     }
 
+
 }
+
+
+

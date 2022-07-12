@@ -1,5 +1,7 @@
+package ru.netology.product.Product;
+
 public class Book extends Product {
-    protected String author;
+    private String author;
 
     public Book(int id, String name, int price, String author) {
         super(id, name, price);
@@ -14,4 +16,3 @@ public class Book extends Product {
         this.author = author;
     }
 }
-

@@ -1,3 +1,6 @@
+
+package ru.netology.product.Product;
+
 public class Product {
     protected int id;
     protected String name;
@@ -13,20 +16,20 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPrice() {
         return price;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPrice(int price) {

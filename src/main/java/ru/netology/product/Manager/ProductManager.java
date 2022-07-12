@@ -1,8 +1,13 @@
+package ru.netology.product.Manager;
+
+import ru.netology.product.Repository.ProductRepository;
+import ru.netology.product.Product.Product;
+
+
 public class ProductManager {
+    private final ProductRepository repo;
 
-    protected Repository repo;
-
-    public ProductManager(Repository repo) {
+    public ProductManager(ProductRepository repo) {
         this.repo = repo;
     }
 
@@ -11,7 +16,7 @@ public class ProductManager {
     }
 
     public Product[] searchBy(String text) {
-        Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
+        Product[] result = new Product[0];
         for (Product product : repo.getAll()) {
             if (matches(product, text)) {
                 Product[] tmp = new Product[result.length + 1];
@@ -21,8 +26,10 @@ public class ProductManager {
                 tmp[tmp.length - 1] = product;
             }
         }
+
         return result;
     }
+
 
     public boolean matches(Product product, String search) {
         if (product.getName().contains(search)) {
@@ -30,7 +37,6 @@ public class ProductManager {
         } else {
             return false;
         }
-        // или в одну строку:
-        // return product.getName().contains(search);
     }
+
 }

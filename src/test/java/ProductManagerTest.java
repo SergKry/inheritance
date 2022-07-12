@@ -1,8 +1,13 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import ru.netology.product.Product.Book;
+import ru.netology.product.Product.Product;
+import ru.netology.product.Product.Smartphone;
+import ru.netology.product.Repository.ProductRepository;
+import ru.netology.product.Manager.ProductManager;
 
 public class ProductManagerTest {
-    Repository repo = new Repository();
+    ProductRepository repo = new ProductRepository();
     ProductManager manager = new ProductManager(repo);
 
 
@@ -10,19 +15,161 @@ public class ProductManagerTest {
     Book book2 = new Book(15, "Blood type red", 690, "Choi");
     Book book3 = new Book(18, "Quiet pool", 690, "Nasty");
 
+    Book book4 = new Book(18, "Quiet pool", 0, null);
+
+    Smartphone phone1 = new Smartphone(302, "Honor9", 10999, "Honor");
+    Smartphone phone2 = new Smartphone(305, "Honor10", 11999, "Honor");
+    Smartphone phone3 = new Smartphone(350, "Nokia", 100999, "Nokia");
+    Smartphone phone4 = new Smartphone(355, "Ya", 999, "China");
+
 
     @Test
-    public void conclusionAuthor() {
-        manager.add(book1);
-        manager.add(book2);
-        manager.add(book3);
+    public void addRepoBookMax() {
+        repo.add(book1);
+        repo.add(book2);
+        repo.add(book3);
+        repo.add(book4);
 
-        Product[] actual = manager.searchBy("Blood");
-        Product[] expected = {book1, book2};
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                book1,
+                book2,
+                book3,
+                book4
+        };
 
 
         Assertions.assertArrayEquals(expected, actual);
 
+    }
+
+    @Test
+    public void addRepoBookMin() {
+        repo.add(book4);
+
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                book4
+        };
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void addRepoPhoneMax() {
+        repo.add(phone1);
+        repo.add(phone2);
+        repo.add(phone3);
+        repo.add(phone4);
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                phone1,
+                phone2,
+                phone3,
+                phone4
+        };
+
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void addRepoPhoneBoundaryMin1() {
+        repo.add(phone1);
+
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                phone1
+        };
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void addRepoPhoneBoundaryMin2() {
+        repo.add(phone1);
+        repo.add(phone2);
+
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                phone1,
+                phone2
+        };
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void addRepoAllProduct() {
+        repo.add(book1);
+        repo.add(book2);
+        repo.add(book3);
+        repo.add(book4);
+        repo.add(phone1);
+        repo.add(phone2);
+        repo.add(phone3);
+        repo.add(phone4);
+
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                book1,
+                book2,
+                book3,
+                book4,
+                phone1,
+                phone2,
+                phone3,
+                phone4
+        };
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void checkingById() {
+        repo.add(phone1);
+        repo.add(phone2);
+        repo.add(phone4);
+
+        repo.removeById(305);
+
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                phone1,
+                phone4
+        };
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void managerAddRepoTest() {
+        manager.add(phone1);
+        manager.add(phone2);
+
+
+        Product[] actual = repo.getAll();
+        Product[] expected = {
+                phone1,
+                phone2
+        };
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void managerSearchBy() {
+        manager.add(phone1);
+        manager.add(phone2);
+
+
+        Product[] actual = manager.searchBy("Honor");
+        Product[] expected = { // не верное утверждение!
+
+        };
+        Assertions.assertArrayEquals(expected, actual);
     }
 
 }
