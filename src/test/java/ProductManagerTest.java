@@ -160,7 +160,7 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void managerSearchBy() {
+    public void managerSearchByValid() {
         manager.add(phone1);
         manager.add(phone2);
 
@@ -172,5 +172,15 @@ public class ProductManagerTest {
         };
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void managerSearchByNotValid() {
+        manager.add(phone1);
+        manager.add(phone2);
 
+
+        Product[] actual = manager.searchBy("Nik");
+        Product[] expected = {
+        };
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
