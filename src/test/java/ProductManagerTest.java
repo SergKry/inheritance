@@ -166,8 +166,9 @@ public class ProductManagerTest {
 
 
         Product[] actual = manager.searchBy("Honor");
-        Product[] expected = { // не верное утверждение!
-
+        Product[] expected = {
+                phone1,
+                phone2
         };
         Assertions.assertArrayEquals(expected, actual);
     }
