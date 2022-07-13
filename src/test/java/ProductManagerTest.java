@@ -5,6 +5,9 @@ import ru.netology.product.Product.Product;
 import ru.netology.product.Product.Smartphone;
 import ru.netology.product.Repository.ProductRepository;
 import ru.netology.product.Manager.ProductManager;
+import ru.netology.product.Exception.NotFoundException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProductManagerTest {
     ProductRepository repo = new ProductRepository();
@@ -183,4 +186,25 @@ public class ProductManagerTest {
         };
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void findByIdTest() {
+        repo.add(phone2);
+
+        Product actual= repo.findById(305);
+        Product expected = phone2;
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void exceptionRemoveByIdTrue() {
+
+        repo.add(phone1);
+        repo.add(phone2);
+
+        Assertions.assertThrows(NotFoundException.class, () ->{
+            repo.removeById(350);
+        });
+    }
+
+
 }
