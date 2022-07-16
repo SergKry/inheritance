@@ -2,7 +2,6 @@ package ru.netology.product.Manager;
 
 import ru.netology.product.Repository.ProductRepository;
 import ru.netology.product.Product.Product;
-import ru.netology.product.Exception.NotFoundException;
 
 
 public class ProductManager {
